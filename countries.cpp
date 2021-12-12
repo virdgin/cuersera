@@ -25,7 +25,8 @@ int main() {
 			}
 			dictionary[country] = capital;
 		}
-		if (input == 'RENAME') {
+		else if (input == 'RENAME') {
+			string old_country, country;
 
 		}
 	}
