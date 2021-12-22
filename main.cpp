@@ -1,21 +1,24 @@
 #include <iostream>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
+#include <string>
 #include <vector>
 using namespace std;
-bool Min(const int& a, const int& b){
-    return abs(a)<abs(b);
-}
-int main(){
-    int n,q;
-    cin >>n;
-    vector<int>gunster;
-    while(cin>>q){
-        gunster.push_back(q);
+
+int main (){
+    int n;
+    vector <string> bro;
+    string sister;
+    cin >> n;
+    while(cin>>sister){
+    bro.push_back(sister);
     }
-    sort(begin(gunster), end(gunster), Min);
-    for (auto i : gunster){
-        cout << i<<" ";
+   sort(bro.begin(), bro.end(), [](string a, string b){
+        return lexicographical_compare(a.begin(), a.end(), b.begin(), b.end(),
+                [](char ch1, char ch2){ return tolower(ch1) < tolower(ch2);});
+    });
+    for (auto i : bro){
+        cout<<i<<" ";
     }
     return 0;
 }
