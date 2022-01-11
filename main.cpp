@@ -1,24 +1,39 @@
 #include <iostream>
-#include <algorithm>
-#include <cmath>
 #include <string>
-#include <vector>
 using namespace std;
-
-int main (){
-    int n;
-    vector <string> bro;
-    string sister;
-    cin >> n;
-    while(cin>>sister){
-    bro.push_back(sister);
+struct Specialization
+{
+    string value;
+    explicit Specialization(string new_value)
+    {
+        value = new_value;
     }
-   sort(bro.begin(), bro.end(), [](string a, string b){
-        return lexicographical_compare(a.begin(), a.end(), b.begin(), b.end(),
-                [](char ch1, char ch2){ return tolower(ch1) < tolower(ch2);});
-    });
-    for (auto i : bro){
-        cout<<i<<" ";
+};
+struct Course
+{
+    string value;
+    explicit Course(string new_value)
+    {
+        value = new_value;
     }
-    return 0;
-}
+};
+struct Week
+{
+    string value;
+    explicit Week(string new_value)
+    {
+        value = new_value;
+    }
+};
+struct LectureTitle
+{
+    string specialization;
+    string course;
+    string week;
+    LectureTitle(Specialization new_specialization, Course new_course, Week new_week)
+    {
+        specialization = new_specialization.value;
+        course = new_course.value;
+        week = new_week.value;
+    }
+};
