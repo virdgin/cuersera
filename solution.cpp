@@ -37,6 +37,13 @@ private:
 int main()
 {
 string event;
-
+DataBase db;
+while(getline(cin,event)){
+    stringstream ss(event);
+    string cmd;
+    try{
+        ss>>cmd;
+    }
+}
     return 0;
 }
