@@ -6,83 +6,132 @@
 
 using namespace std;
 
-enum class QueryType {
+enum class QueryType
+{
   NewBus,
   BusesForStop,
   StopsForBus,
   AllBuses
 };
 
-struct Query {
+struct Query
+{
   QueryType type;
   string bus;
   string stop;
   vector<string> stops;
 };
 
-istream& operator >> (istream& is, Query& q) {
+istream &operator>>(istream &is, Query &q)
+{
   // Реализуйте эту функцию
+  string operation_code;
+  is >> operation_code;
+
+  if (operation_code == "NEW_BUS")
+  {
+    q.type = QueryType::NewBus;
+    is >> q.bus;
+    size_t stop_count = 0;
+    is >> stop_count;
+    q.stops.resize(stop_count);
+    for (auto &item : q.stops)
+    {
+      is >> item;
+    }
+  }
+  else if (operation_code == "BUSES_FOR_STOP")
+  {
+    q.type = QueryType::BusesForStop;
+    is >> q.stop;
+  }
+  else if (operation_code == "STOPS_FOR_BUS")
+  {
+
+    q.type = QueryType::StopsForBus;
+    is >> q.bus;
+  }
+  else if (operation_code == "ALL_BUSES")
+  {
+    q.type = QueryType::AllBuses;
+  }
   return is;
 }
 
-struct BusesForStopResponse {
+struct BusesForStopResponse
+{
+  // Наполните полями эту структуру
+  vector<string> buses_to_stops;
+
+};
+
+ostream &operator<<(ostream &os, const BusesForStopResponse &r)
+{
+  
+  return os;
+}
+
+struct StopsForBusResponse
+{
   // Наполните полями эту структуру
 };
 
-ostream& operator << (ostream& os, const BusesForStopResponse& r) {
+ostream &operator<<(ostream &os, const StopsForBusResponse &r)
+{
   // Реализуйте эту функцию
   return os;
 }
 
-struct StopsForBusResponse {
+struct AllBusesResponse
+{
   // Наполните полями эту структуру
 };
 
-ostream& operator << (ostream& os, const StopsForBusResponse& r) {
+ostream &operator<<(ostream &os, const AllBusesResponse &r)
+{
   // Реализуйте эту функцию
   return os;
 }
 
-struct AllBusesResponse {
-  // Наполните полями эту структуру
-};
-
-ostream& operator << (ostream& os, const AllBusesResponse& r) {
-  // Реализуйте эту функцию
-  return os;
-}
-
-class BusManager {
+class BusManager
+{
 public:
-  void AddBus(const string& bus, const vector<string>& stops) {
+  void AddBus(const string &bus, const vector<string> &stops)
+  {
     // Реализуйте этот метод
   }
 
-  BusesForStopResponse GetBusesForStop(const string& stop) const {
+  BusesForStopResponse GetBusesForStop(const string &stop) const
+  {
     // Реализуйте этот метод
   }
 
-  StopsForBusResponse GetStopsForBus(const string& bus) const {
+  StopsForBusResponse GetStopsForBus(const string &bus) const
+  {
     // Реализуйте этот метод
   }
 
-  AllBusesResponse GetAllBuses() const {
+  AllBusesResponse GetAllBuses() const
+  {
     // Реализуйте этот метод
   }
 };
 
 // Не меняя тела функции main, реализуйте функции и классы выше
 
-int main() {
+int main()
+{
   int query_count;
   Query q;
 
   cin >> query_count;
 
   BusManager bm;
-  for (int i = 0; i < query_count; ++i) {
+  for (int i = 0; i < query_count; ++i)
+  {
     cin >> q;
-    switch (q.type) {
+    switch (q.type)
+    {
     case QueryType::NewBus:
       bm.AddBus(q.bus, q.stops);
       break;
