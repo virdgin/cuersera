@@ -1,8 +1,6 @@
-n = int(input())
-while n != 0:
-    if n == 1:
-        print('YES')
-    elif n % 2 != 0:
-        print('NO')
-    else:
-        n = n // 2
+a = int(input())
+s, n = 1, 0
+while s != a+1:
+    n += (1/(s*s))
+    s += 1
+print(n)
